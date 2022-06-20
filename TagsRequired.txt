@@ -1,0 +1,6 @@
+amenity
+boundary building
+highway
+landuse
+place
+waterways
