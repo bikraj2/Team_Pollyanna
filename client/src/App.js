@@ -4,14 +4,18 @@ import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import Nav from "./components/Nav/nav";
-import LeftLayer from "./components/LeftLayer/LeftLayer";
+// import LeftLayer from "./components/LeftLayer/LeftLayer";
 import "./App.css";
+import axios from "axios";
+
 function App() {
+  const BASE_URL = "http://localhost:8000/api/a";
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(85.324);
   const [lat, setLat] = useState(27.7172);
   const [zoom, setZoom] = useState(13);
+  const [boundData, setBoundData] = useState([]);
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new maplibre.Map({
@@ -44,15 +48,34 @@ function App() {
 
     function updateArea(e) {
       const data = draw.getAll();
+      setBoundData(data);
+      console.log(data);
     }
   });
-
+  console.log(boundData);
+  // useEffect(() => {
+  //   console.log(boundData);
+  // }, [boundData]);
   return (
     <div>
       <Nav />
-
       <div ref={mapContainer} className="map-container" />
-      <LeftLayer />
+      {/* <LeftLayer /> */}
+      <button
+        onClick={(e) => {
+          e.preventDefault(e);
+          axios
+            .post("https://reqres.in/api/articles", boundData)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }}
+      >
+        Analyse
+      </button>
     </div>
   );
 }
