@@ -1,0 +1,14 @@
+.map-container {
+  height: 92.155vh;
+  width: 75vw;
+}
+
+.mapboxgl-ctrl-group,
+.maplibregl-ctrl-group {
+  background: whitesmoke;
+  font-size: 100px;
+}
+.mapbox-gl-draw_ctrl-draw-btn {
+  height: 38.45px;
+  width: 38.45px;
+}

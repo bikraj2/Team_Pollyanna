@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Urbanist", sans-serif;
+}
+.logo {
+  font-size: 18.45px;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  height: 7.845vh;
+  padding: 18.45px;
+  align-items: center;
+}
+.nav-links {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  list-style: none;
+  font-size: 16.45px;
+  font-family: "Urbanist", sans-serif;
+  align-items: center;
+}
+.nav-links .links {
+  cursor: pointer;
+  font-weight: 450;
+}
+.nav-links .links:hover {
+  transform: scale(1.1);
+  color: tomato;
+}
+.search {
+  display: flex;
+  width: 18.45%;
+}
+.search .searchbox {
+  border: 1px solid black;
+  border-radius: 6.45px;
+  width: 188.45px;
+  padding: 4.5px;
+}
+.search .button {
+  padding: 4.5px;
+  margin: 0px 18.45px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 6.45px;
+}
+.search .button:hover {
+  transform: scale(1.1);
+}
