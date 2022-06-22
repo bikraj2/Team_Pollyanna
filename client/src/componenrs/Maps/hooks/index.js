@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import maplibre from "maplibre-gl";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 
 const useMap = () => {
   const mapContainer = useRef(null);
@@ -11,7 +12,6 @@ const useMap = () => {
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
-    console.log("Not current map so " + mapContainer.current);
     map.current = new maplibre.Map({
       container: mapContainer.current,
       style:
@@ -21,9 +21,9 @@ const useMap = () => {
     });
     map.current.addControl(draw);
   });
+
   const draw = new MapboxDraw({
     displayControlsDefault: false,
-    color: "red",
     controls: {
       polygon: true,
       trash: true,
@@ -40,7 +40,6 @@ const useMap = () => {
   }
 
   function updateArea() {
-    console.log("Should Print");
     const data = draw.getAll();
     console.log(data);
     return data;

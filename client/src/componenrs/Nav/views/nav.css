@@ -1,6 +1,9 @@
-
 .logo {
   font-size: 24.45px;
+  padding: 18.45px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 .logo h1 {
   font-family: "Urbanist", sans-serif !important;
@@ -8,10 +11,10 @@
 nav {
   display: flex;
   flex-direction: row;
-  height: 7vh;
-  padding: 18.45px;
+  height: 7.45vh;
   align-items: center;
   background-color: #f3f3f3;
+  z-index: 5;
 }
 .nav-links {
   display: flex;

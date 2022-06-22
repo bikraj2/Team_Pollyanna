@@ -16,14 +16,13 @@ export default function Map() {
       zoom: zoom,
     });
   });
+
   return (
     <div
       style={{
         position: "absolute",
-        height: "100vh",
+        height: "92.55vh",
         width: "100vw",
-        float: "right",
-        zIndex: "10",
       }}
       ref={mapContainer}
       className="map-container"

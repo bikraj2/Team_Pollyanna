@@ -1,21 +1,6 @@
-.map-container {
-  height: 93vh;
-  width: 100vw;
-  float: right;
-}
-
-.mapboxgl-ctrl-group,
-.maplibregl-ctrl-group {
-  background: whitesmoke;
-  font-size: 100px;
-}
-.mapbox-gl-draw_ctrl-draw-btn {
-  height: 38.45px;
-  width: 38.45px;
-}
 .buttonClass {
   font-size: 18.45px;
-  width: 14.45%;
+  width: 11.45%;
   height: 38.45px;
   border: 1px solid black;
   border-radius: 4px;
@@ -24,8 +9,13 @@
   color: white;
   z-index: 1;
   margin-top: 43.45%;
-  margin-left: 42vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
+  top: auto;
+  bottom: 1%;
+  left: 45%;
   transition-duration: 0.45s;
 }
 
@@ -33,10 +23,4 @@
   background-color: rgb(23, 139, 247);
   cursor: pointer;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24);
-}
-.vl {
-  border-left: 1px solid black;
-  height: 93vh;
-  position: absolute;
-  left: 25%;
 }
