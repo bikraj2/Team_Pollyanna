@@ -1,0 +1,25 @@
+.map-container {
+  height: 92.155vh;
+  position: absolute;
+  width: 70%;
+}
+
+p {
+  font-family: "Open Sans";
+  margin: 0;
+  font-size: 13px;
+}
+.buttonClass {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4.45px;
+  background-color: blue;
+  color: white;
+  float: right;
+  z-index: 1;
+  margin-right: 26% !important;
+  margin-top: 88.45px;
+}
+.buttonClass:hover {
+  cursor: pointer;
+}

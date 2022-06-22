@@ -7,14 +7,18 @@ body {
   font-family: "Urbanist", sans-serif;
 }
 .logo {
-  font-size: 18.45px;
+  font-size: 24.45px;
+}
+.logo h1 {
+  font-family: "Urbanist", sans-serif !important;
 }
 nav {
   display: flex;
   flex-direction: row;
-  height: 7.845vh;
+  height: 7vh;
   padding: 18.45px;
   align-items: center;
+  background-color: #f3f3f3;
 }
 .nav-links {
   display: flex;
@@ -22,7 +26,6 @@ nav {
   justify-content: space-around;
   list-style: none;
   font-size: 16.45px;
-  font-family: "Urbanist", sans-serif;
   align-items: center;
 }
 .nav-links .links {
@@ -30,7 +33,7 @@ nav {
   font-weight: 450;
 }
 .nav-links .links:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   color: tomato;
 }
 .search {
@@ -49,7 +52,19 @@ nav {
   cursor: pointer;
   border: 1px solid black;
   border-radius: 6.45px;
+  background-color: #0270df;
+  color: white;
 }
 .search .button:hover {
-  transform: scale(1.1);
+  transition: 0.4s;
+  background-color: rgb(23, 139, 247);
+  cursor: pointer;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24);
+}
+.line {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  width: 100%;
+  border-top: 1px solid grey;
 }
