@@ -1,15 +1,21 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import AnalysePage from "./container/AnalysePage/AnalysePage";
-import FP from "./FP";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import FirstPage from "./componenrs/FirstPage/views";
+import AnalysisPage from "./componenrs/AnalysisPage/views";
+import SolvePage from "./componenrs/SolvePage/views";
+import Map from "./componenrs/Maps/views";
 
-export default App = () => {
+function App() {
   return (
-    <Routes>
-      <Route path="/analysis">
-        <AnalysePage />
-      </Route>
-      <Route path="/" element={FP} />
-    </Routes>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<FirstPage />} />
+        <Route path="/maps" element={<Map />} />
+        <Route path="/analysis" element={<AnalysisPage />} />
+        <Route path="/solve" element={<SolvePage />} />
+      </Routes>
+    </div>
   );
-};
+}
+
+export default App;
