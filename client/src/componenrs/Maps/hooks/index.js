@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import maplibre from "maplibre-gl";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+import axios from "axios";
 
 const useMap = () => {
   const mapContainer = useRef(null);
@@ -8,10 +10,10 @@ const useMap = () => {
   const [lng, setLng] = useState(85.324);
   const [lat, setLat] = useState(27.7172);
   const [zoom, setZoom] = useState(13);
+  const [boundData, setBoundData] = useState();
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
-    console.log("Not current map so " + mapContainer.current);
     map.current = new maplibre.Map({
       container: mapContainer.current,
       style:
@@ -21,16 +23,16 @@ const useMap = () => {
     });
     map.current.addControl(draw);
   });
+
   const draw = new MapboxDraw({
     displayControlsDefault: false,
-    color: "red",
     controls: {
       polygon: true,
       trash: true,
     },
     defaultMode: "draw_polygon",
   });
-
+  console.log(map.current);
   if (map.current) {
     map.current.on("draw.create", updateArea);
 
@@ -40,10 +42,21 @@ const useMap = () => {
   }
 
   function updateArea() {
-    console.log("Should Print");
     const data = draw.getAll();
+    setBoundData(data);
     console.log(data);
-    return data;
+  }
+
+  function sendData() {
+    console.log(boundData);
+    // axios
+    //   .post("http://localhost:8000/api/a", boundData)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   }
 
   return {
@@ -55,6 +68,7 @@ const useMap = () => {
     setLat,
     setLng,
     setZoom,
+    sendData,
   };
 };
 

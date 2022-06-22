@@ -377,5 +377,4 @@ const locLists = [
     },
   },
 ];
-
 export default locLists;
