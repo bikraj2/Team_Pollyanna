@@ -1,59 +1,23 @@
-/* .logo {
-  font-size: 24.45px;
-  padding: 18.45px;
+.Nav {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-.logo h1 {
-  font-family: "Urbanist", sans-serif !important;
-}
-nav {
-  display: flex;
-  flex-direction: row;
-  height: 7.45vh;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f3f3f3;
-  z-index: 5;
-}
-.nav-links {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  list-style: none;
-  font-size: 16.45px;
-  align-items: center;
-}
-.nav-links .links {
-  cursor: pointer;
-  font-weight: 450;
-}
-.nav-links .links:hover {
-  transform: scale(1.05);
-  color: tomato;
-}
-
-*/
-
-.Nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 60px;
+  padding: 0;
   height: 7.44vh;
 }
+.logo h4 {
+  font-size: 28.45px;
+}
 .search {
-  display: flex;
+  margin-left: auto;
 }
 .search .searchbox {
   border: 2px solid green;
   border-radius: 6.45px;
   width: 30vw;
-  padding: 5px 15px;
+  padding: 7.45px 15px;
 }
 .search .button {
-
+  font-size: 15.45px;
   padding: 4.5px;
   margin: 0px 18.45px;
   cursor: pointer;
@@ -74,4 +38,4 @@ nav {
   flex-grow: 1;
   width: 100%;
   border-top: 1px solid grey;
-} 
+}

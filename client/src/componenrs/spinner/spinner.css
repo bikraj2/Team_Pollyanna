@@ -1,0 +1,15 @@
+.spin {
+  height: 100vh;
+  width: 100vw;
+  font-size: larger;
+  background-color: #f1f2f3;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 11111;
+}
+.gmi {
+  position: absolute;
+  top: 25%;
+  left: 43.45%;
+}

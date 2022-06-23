@@ -1,9 +1,11 @@
 import React from "react";
 import "./nav.css";
+import logo from "../../assest/images/pollyanna.png";
 const Nav = () => {
   return (
     <>
       <div className="Nav">
+        <img src={logo} width="94.45" height="94.45" />
         <div className="logo">
           <h4>Pollyanna</h4>
         </div>
