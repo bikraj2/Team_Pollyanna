@@ -1,11 +1,15 @@
 import React, { useRef, useState, useEffect } from "react";
-import LeftContainer from "../LeftContainer/LeftContainer";
 import Nav from "../Nav/views";
 import "./button.css";
 import maplibre from "maplibre-gl";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import axios from "axios";
+import "./checkbox.sass";
+import "./conclusion.sass";
+import "../LeftContainer/LeftContainer.css";
+import locLists from "../Location/Location";
+
 export default function Page() {
   const BaseURL = "http://127.0.0.1:8000/api/a";
   const mapContainer = useRef(null);
@@ -49,6 +53,18 @@ export default function Page() {
   });
   function sendData() {
     console.log("here we are");
+    if (secondPageAc) {
+      setThirdPageAc(1);
+      setSecondPageAc(0);
+    }
+    if (firstPageAc) {
+      setSecondPageAc(1);
+      setFirstPageAc(0);
+    }
+    if (thirdPageAc) {
+      setFirstPageAc(1);
+      setThirdPageAc(0);
+    }
     axios
       .post(BaseURL, boundData)
       .then((res) => {
@@ -59,11 +75,22 @@ export default function Page() {
       });
   }
   console.log(boundData);
+
+  const [school, setSchool] = useState(false);
+  const [hospital, setHospital] = useState(false);
+
+  const [firstPageAc, setFirstPageAc] = useState(1);
+  const [secondPageAc, setSecondPageAc] = useState(0);
+  const [thirdPageAc, setThirdPageAc] = useState(0);
   return (
     <>
       <Nav />
       <button className="buttonClass" onClick={sendData}>
-        Analyse
+        {firstPageAc
+          ? "Analyse Sustainablity"
+          : secondPageAc
+          ? "Show the Solution"
+          : "Go To Selector"}
       </button>
       <div
         style={{
@@ -74,7 +101,72 @@ export default function Page() {
         ref={mapContainer}
         className="map-container"
       ></div>
-      <LeftContainer />
+      {firstPageAc === 0 ? (
+        <div className="data-list">
+          <div className="heading">
+            <h2>{secondPageAc ? "Current Locations" : "Proposed Locations"}</h2>
+          </div>
+          <ul className="list">
+            {locLists.map((data, index) => (
+              <li key={index}>
+                <div className="data-item">
+                  <a>{data.properties.name}</a>
+                  <p>{data.properties.address}</p>
+                  <b>{data.properties.phone}</b>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <div className={firstPageAc ? "checkbox active" : "checkbox"}>
+        <div className="topic">
+          <h3> What data you want to analyse ? </h3>
+        </div>
+        <div className="checkboxs">
+          <div>
+            <input
+              type="checkbox"
+              id="hospital"
+              name="hospital"
+              value="hospital"
+              onChange={(e) => {
+                if (e.target.value === "hospital") {
+                  setHospital(true);
+                } else {
+                  setHospital(false);
+                }
+              }}
+            />
+            <label for="hospital"> Hospital</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="school"
+              name="school"
+              value="school"
+              onChange={(e) => {
+                if (e.target.value === "school") {
+                  setSchool(true);
+                } else {
+                  setSchool(false);
+                }
+              }}
+            />
+            <label for="school"> School </label>
+          </div>
+          <div>
+            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
+            <label for="vehicle3"> I have a boat</label>
+          </div>
+        </div>
+      </div>
+      <div className={firstPageAc !== 0 ? "conclusion" : "conclusion active"}>
+        <h2>Valididty</h2>
+      </div>
     </>
   );
 }

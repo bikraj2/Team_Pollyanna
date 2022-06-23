@@ -21,7 +21,7 @@ const useMap = () => {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(draw);
+    map.current.addControl(draw, "top-right");
   });
 
   const draw = new MapboxDraw({
@@ -45,18 +45,6 @@ const useMap = () => {
     const data = draw.getAll();
     setBoundData(data);
     console.log(data);
-  }
-
-  function sendData() {
-    console.log(boundData);
-    // axios
-    //   .post("http://localhost:8000/api/a", boundData)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
   }
 
   return {

@@ -1,11 +1,10 @@
 .buttonClass {
   font-size: 18.45px;
-  width: 11.45%;
+  width: 20%;
   height: 38.45px;
-  border: 1px solid black;
   border-radius: 4px;
   padding: 4.45px;
-  background-color: #0270df;
+  background-color: green;
   color: white;
   z-index: 1;
   margin-top: 43.45%;
@@ -16,11 +15,11 @@
   top: auto;
   bottom: 1%;
   left: 45%;
-  transition-duration: 0.45s;
+  border-radius: 8px;
+  border: none;
 }
 
 .buttonClass:hover {
-  background-color: rgb(23, 139, 247);
   cursor: pointer;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24);
 }

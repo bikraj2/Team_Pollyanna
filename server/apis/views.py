@@ -3,17 +3,22 @@ from urllib import response
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-# Create your views here.
 import json
 import requests
+import overpy
 
 def getdata(east,west,north,south):
-    # for oshems
-    URL = 'https://api.ohsome.org/v1/elements/count'
-    data = {"bboxes": "8.625,49.3711,8.7334,49.4397", "format": "json", "time": "2014-01-01", "filter": "amnety = 'hospital'"}
-    response = requests.post(URL, data=data)
-    return response.json()
-    # # f
+    # # for oshems
+    # URL = 'https://api.ohsome.org/v1/elements/count'
+    # data = {"bboxes": "8.625,49.3711,8.7334,49.4397", "format": "json", "time": "2014-01-01", "filter": "amnety = 'hospital'"}
+    # response = requests.post(URL, data=data)
+    # return response.json()
+    # # for overpy
+    api = overpy.Overpass()
+    api.query('''[timeout:9000][maxsize:1073741824];
+            node(51.15,7.0,51.35,7.3);
+            out;''')
+    
 
 @api_view(['POST'])
 def test(request):
@@ -32,8 +37,10 @@ def test(request):
             north = coordinates[i][0]
         if(south>coordinates[i][1]):
             south = coordinates[i][0]
-
     print(getdata(east,north, west,south))
+
+    #for hospital
+    # if()
     # print(getdata(east=east,north=north, west=west,south=south ))
     # response = json.load(request)
     # if(response.type == "hospital"):
