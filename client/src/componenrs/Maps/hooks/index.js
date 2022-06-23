@@ -21,7 +21,7 @@ const useMap = () => {
       center: [lng, lat],
       zoom: zoom,
     });
-    map.current.addControl(draw, "top-right");
+    map.current.addControl(draw.attributionControl(), "top-left");
   });
 
   const draw = new MapboxDraw({
@@ -30,6 +30,7 @@ const useMap = () => {
       polygon: true,
       trash: true,
     },
+    attributionControl: false,
     defaultMode: "draw_polygon",
   });
   console.log(map.current);

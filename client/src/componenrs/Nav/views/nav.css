@@ -1,4 +1,4 @@
-.logo {
+/* .logo {
   font-size: 24.45px;
   padding: 18.45px;
   display: flex;
@@ -13,6 +13,7 @@ nav {
   flex-direction: row;
   height: 7.45vh;
   align-items: center;
+  justify-content: space-between;
   background-color: #f3f3f3;
   z-index: 5;
 }
@@ -32,28 +33,38 @@ nav {
   transform: scale(1.05);
   color: tomato;
 }
+
+*/
+
+.Nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+  height: 7.44vh;
+}
 .search {
   display: flex;
-  width: 18.45%;
 }
 .search .searchbox {
-  border: 1px solid black;
+  border: 2px solid green;
   border-radius: 6.45px;
-  width: 188.45px;
-  padding: 4.5px;
+  width: 30vw;
+  padding: 5px 15px;
 }
 .search .button {
+
   padding: 4.5px;
   margin: 0px 18.45px;
   cursor: pointer;
-  border: 1px solid black;
+  border: none;
+  background-color: green;
   border-radius: 6.45px;
-  background-color: #0270df;
   color: white;
 }
 .search .button:hover {
   transition: 0.4s;
-  background-color: rgb(23, 139, 247);
+  background-color: green;
   cursor: pointer;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24);
 }
@@ -63,4 +74,4 @@ nav {
   flex-grow: 1;
   width: 100%;
   border-top: 1px solid grey;
-}
+} 

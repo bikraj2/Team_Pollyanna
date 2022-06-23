@@ -40,3 +40,16 @@
     transform: rotate(360deg);
   }
 }
+
+.maplibregl-ctrl-top-right{
+  left:0;
+  right: auto;
+  top: 0;
+  
+}
+.mapboxgl-ctrl-top-right{
+  left:0;
+  right: auto;
+  top: 0;
+  
+}
