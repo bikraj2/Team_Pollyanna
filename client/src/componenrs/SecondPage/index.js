@@ -30,6 +30,7 @@ export default function SecondPage() {
       temp[index] = data.geometry.coordinates;
     });
     setJsonHos(temp);
+    console.log(jsonHos);
   }, []);
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -534,12 +535,13 @@ export default function SecondPage() {
             <h2>{secondPageAc ? "Current Locations" : "Proposed Locations"}</h2>
           </div>
           <ul className="list">
-            {locLists.map((data, index) => (
+            {currentHos.features.map((data, index) => (
               <li key={index}>
                 <div className="data-item">
-                  <a>{data.properties.name}</a>
-                  <p>{data.properties.address}</p>
-                  <b>{data.properties.phone}</b>
+                  <a>{index} </a>
+                  <a>{data.properties["name"]}</a>
+                  {/* <p>{data.properties.address}</p>
+                  <b>{data.properties.phone}</b> */}
                 </div>
               </li>
             ))}
@@ -548,53 +550,6 @@ export default function SecondPage() {
       ) : (
         <div></div>
       )}
-      {/* Selector || Checkbox */}
-      <div className={firstPageAc ? "checkbox active" : "checkbox"}>
-        <div className="topic">
-          <h3>{firstPageAc ? "What data you want to analyse ?" : "Select"}</h3>
-        </div>
-        <div className="checkboxs">
-          <div className="hospitalCheck">
-            <input
-              type="checkbox"
-              id="hospital"
-              name="hospital"
-              value="hospital"
-              onChange={(e) => {
-                if (e.target.value === "hospital") {
-                  setHospital(true);
-                } else {
-                  setHospital(false);
-                }
-              }}
-            />
-            <label for="hospital" className="hospital">
-              {" "}
-              Hospital
-            </label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="school"
-              name="school"
-              value="school"
-              onChange={(e) => {
-                if (e.target.value === "school") {
-                  setSchool(true);
-                } else {
-                  setSchool(false);
-                }
-              }}
-            />
-            <label for="school"> School </label>
-          </div>
-        </div>
-      </div>
-      {/* Conclusion Box */}
-      <div className={firstPageAc !== 0 ? "conclusion" : "conclusion active"}>
-        <h2>Valididty</h2>
-      </div>
     </>
   );
 }

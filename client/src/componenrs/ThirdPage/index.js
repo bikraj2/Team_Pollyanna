@@ -71,7 +71,6 @@ export default function ThirdPage() {
     console.log("here we are");
     navigate("/");
   }
-  console.log(boundData);
 
   const [school, setSchool] = useState(false);
   const [hospital, setHospital] = useState(false);
@@ -110,12 +109,13 @@ export default function ThirdPage() {
             <h2>{secondPageAc ? "Current Locations" : "Proposed Locations"}</h2>
           </div>
           <ul className="list">
-            {locLists.map((data, index) => (
+            {proposedHos.features.map((data, index) => (
               <li key={index}>
                 <div className="data-item">
-                  <a>{data.properties.name}</a>
-                  <p>{data.properties.address}</p>
-                  <b>{data.properties.phone}</b>
+                  <a>{index}</a>
+                  <p>{`${data.geometry.coordinates[0].toFixed(
+                    2
+                  )} ,  ${data.geometry.coordinates[1].toFixed(2)}`}</p>
                 </div>
               </li>
             ))}
@@ -124,53 +124,6 @@ export default function ThirdPage() {
       ) : (
         <div></div>
       )}
-      {/* Selector || Checkbox */}
-      <div className={firstPageAc ? "checkbox active" : "checkbox"}>
-        <div className="topic">
-          <h3>{firstPageAc ? "What data you want to analyse ?" : "Select"}</h3>
-        </div>
-        <div className="checkboxs">
-          <div className="hospitalCheck">
-            <input
-              type="checkbox"
-              id="hospital"
-              name="hospital"
-              value="hospital"
-              onChange={(e) => {
-                if (e.target.value === "hospital") {
-                  setHospital(true);
-                } else {
-                  setHospital(false);
-                }
-              }}
-            />
-            <label for="hospital" className="hospital">
-              {" "}
-              Hospital
-            </label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="school"
-              name="school"
-              value="school"
-              onChange={(e) => {
-                if (e.target.value === "school") {
-                  setSchool(true);
-                } else {
-                  setSchool(false);
-                }
-              }}
-            />
-            <label for="school"> School </label>
-          </div>
-        </div>
-      </div>
-      {/* Conclusion Box */}
-      <div className={firstPageAc !== 0 ? "conclusion" : "conclusion active"}>
-        <h2>Valididty</h2>
-      </div>
     </>
   );
 }

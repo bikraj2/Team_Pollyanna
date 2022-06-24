@@ -14,8 +14,6 @@ function App() {
         <Route path="/" element={<Page />} />
         <Route path="/analyse" element={<SecondPage />} />
         <Route path="/solution" element={<ThirdPage />} />
-        <Route path="/analyseSchool" element={<SecondPageSchool />} />
-        <Route path="/analyseHospital" element={<ThirdPageSchool />} />
       </Routes>
     </div>
   );

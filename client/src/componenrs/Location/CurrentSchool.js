@@ -1,4 +1,4 @@
-export default CurrentSChool = {
+const CurrentSChool = {
   type: "FeatureCollection",
   features: [
     {
@@ -11145,3 +11145,4 @@ export default CurrentSChool = {
     },
   ],
 };
+export default CurrentSChool;

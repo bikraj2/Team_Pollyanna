@@ -1,4 +1,4 @@
-export default proposedSchool = {
+const proposedSchool = {
   type: "FeatureCollection",
   features: [
     {
@@ -66,3 +66,5 @@ export default proposedSchool = {
     },
   ],
 };
+
+export default proposedSchool;

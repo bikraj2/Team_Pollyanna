@@ -594,6 +594,10 @@ export default function SecondPageSchool() {
       {/* Conclusion Box */}
       <div className={firstPageAc !== 0 ? "conclusion" : "conclusion active"}>
         <h2>Valididty</h2>
+        <div>
+          <h3>Area covered percentage: 42.00346</h3>
+          <h3>ABuilding covered percentage: 65.535</h3>
+        </div>
       </div>
     </>
   );
