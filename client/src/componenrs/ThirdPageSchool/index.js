@@ -13,7 +13,7 @@ import Spinner from "../spinner/spinner";
 import ProposedSchool from "../Location/ProposedSchool";
 import { useNavigate } from "react-router-dom";
 
-export default function ThirdPage() {
+export default function ThirdPageSchool() {
   const BaseURL = "http://127.0.0.1:8000/api/a";
   const mapContainer = useRef(null);
   const map = useRef(null);

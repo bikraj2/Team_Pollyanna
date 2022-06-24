@@ -12,7 +12,7 @@ import locLists from "../Location/Location";
 import Spinner from "../spinner/spinner";
 import { useNavigate } from "react-router-dom";
 import CurrentSchool from "../Location/CurrentSchool";
-export default function SecondPage() {
+export default function SecondPageSchool() {
   const BaseURL = "http://127.0.0.1:8000/api/a";
   const mapContainer = useRef(null);
   const map = useRef(null);
