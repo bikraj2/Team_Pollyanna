@@ -10,6 +10,7 @@ import "./conclusion.sass";
 import "../LeftContainer/LeftContainer.css";
 import locLists from "../Location/Location";
 import Spinner from "../spinner/spinner";
+import maplibregl from "maplibre-gl";
 import { useNavigate } from "react-router-dom";
 
 export default function Page() {
@@ -476,15 +477,26 @@ export default function Page() {
 
     map.current.on("draw.update", updateArea);
 
+    new maplibregl.Marker({ color: "#FF0000" })
+      .setLngLat(
+        [85.78641334470295, 27.630567452926307],
+        [85.7763624054439, 27.634984756447103]
+      )
+      .addTo(map.current);
+
     function updateArea(e) {
       const data = draw.getAll();
       setBoundData(data);
       console.log(data);
     }
   });
+  const [loader, setLoader] = useState();
   function sendData() {
-    console.log("here we are");
-    navigate("/analyse");
+    setLoader(1);
+    setTimeout(() => {
+      setLoader(0);
+      navigate("/analyse");
+    }, 10000);
   }
   console.log(boundData);
 
@@ -499,7 +511,7 @@ export default function Page() {
       {/* Navigation Bar */}
       <Nav />
       {/* Timer Page */}
-      {/* {timerPage ? <Spinner /> : <div />} */}
+      {loader ? <Spinner /> : <div />}
       {/* Button At bottom */}
       <button className="buttonClass" onClick={sendData}>
         {firstPageAc
@@ -539,53 +551,6 @@ export default function Page() {
       ) : (
         <div></div>
       )}
-      {/* Selector || Checkbox */}
-      <div className={firstPageAc ? "checkbox active" : "checkbox"}>
-        <div className="topic">
-          <h3>{firstPageAc ? "What data you want to analyse ?" : "Select"}</h3>
-        </div>
-        <div className="checkboxs">
-          <div className="hospitalCheck">
-            <input
-              type="checkbox"
-              id="hospital"
-              name="hospital"
-              value="hospital"
-              onChange={(e) => {
-                if (e.target.value === "hospital") {
-                  setHospital(true);
-                } else {
-                  setHospital(false);
-                }
-              }}
-            />
-            <label for="hospital" className="hospital">
-              {" "}
-              Hospital
-            </label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="school"
-              name="school"
-              value="school"
-              onChange={(e) => {
-                if (e.target.value === "school") {
-                  setSchool(true);
-                } else {
-                  setSchool(false);
-                }
-              }}
-            />
-            <label for="school"> School </label>
-          </div>
-        </div>
-      </div>
-      {/* Conclusion Box */}
-      <div className={firstPageAc !== 0 ? "conclusion" : "conclusion active"}>
-        <h2>Valididty</h2>
-      </div>
     </>
   );
 }

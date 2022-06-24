@@ -10,6 +10,7 @@ import "../Page/conclusion.sass";
 import "../LeftContainer/LeftContainer.css";
 import locLists from "../Location/Location";
 import Spinner from "../spinner/spinner";
+import maplibregl from "maplibre-gl";
 import { useNavigate } from "react-router-dom";
 import currentHos from "../Location/ProposedHos";
 export default function SecondPage() {
@@ -475,6 +476,15 @@ export default function SecondPage() {
           },
         },
       });
+      currentHos.features
+        .map((data) => {
+          console.log(data.geometry.coordinates);
+          return new maplibregl.Marker({ color: "#FF0000" }).setLngLat(
+            data.geometry.coordinates
+          );
+        })
+
+        .addTo(map.current);
       map.current.addLayer({
         id: "maine",
         type: "fill",
