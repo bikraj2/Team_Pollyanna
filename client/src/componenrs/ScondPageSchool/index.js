@@ -1,18 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 import Nav from "../Nav/views";
-import "./button.css";
+import "../Page/button.css";
 import maplibre from "maplibre-gl";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import axios from "axios";
-import "./checkbox.sass";
-import "./conclusion.sass";
+import "../Page/checkbox.sass";
+import "../Page/conclusion.sass";
 import "../LeftContainer/LeftContainer.css";
 import locLists from "../Location/Location";
 import Spinner from "../spinner/spinner";
 import { useNavigate } from "react-router-dom";
-
-export default function Page() {
+import CurrentSchool from "../Location/CurrentSchool";
+export default function SecondPage() {
   const BaseURL = "http://127.0.0.1:8000/api/a";
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -22,7 +22,42 @@ export default function Page() {
   const [boundData, setBoundData] = useState([]);
   const [timerPage, setTimerPage] = useState(0);
   let navigate = useNavigate();
+  const [jsonHos, setJsonHos] = useState([]);
+  //point all the json
   useEffect(() => {
+    let temp = [];
+    CurrentSchool.features.map((data, index) => {
+      temp[index] = data.geometry.coordinates;
+    });
+    setJsonHos(temp);
+  }, []);
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new maplibre.Map({
+      container: mapContainer.current,
+      style:
+        "https://api.baato.io/api/v1/styles/retro?key=bpk.RbCFuyprceXfPDgW7kxOENj-7iX968-ZRiYMv4nw9cwM",
+      center: [lng, lat],
+      zoom: zoom,
+    });
+    const draw = new MapboxDraw({
+      displayControlsDefault: false,
+      color: "red",
+      controls: {
+        polygon: true,
+        trash: true,
+      },
+      defaultMode: "draw_polygon",
+    });
+
+    map.current.addControl(draw);
+
+    map.current.on("draw.create", updateArea);
+
+    map.current.on("draw.delete", updateArea);
+
+    map.current.on("draw.update", updateArea);
+
     map.current?.on("load", function () {
       map.current.addSource("maine", {
         type: "geojson",
@@ -450,32 +485,6 @@ export default function Page() {
         },
       });
     });
-    if (map.current) return; // initialize map only once
-    map.current = new maplibre.Map({
-      container: mapContainer.current,
-      style:
-        "https://api.baato.io/api/v1/styles/retro?key=bpk.RbCFuyprceXfPDgW7kxOENj-7iX968-ZRiYMv4nw9cwM",
-      center: [lng, lat],
-      zoom: zoom,
-    });
-    const draw = new MapboxDraw({
-      displayControlsDefault: false,
-      color: "red",
-      controls: {
-        polygon: true,
-        trash: true,
-      },
-      defaultMode: "draw_polygon",
-    });
-
-    map.current.addControl(draw);
-
-    map.current.on("draw.create", updateArea);
-
-    map.current.on("draw.delete", updateArea);
-
-    map.current.on("draw.update", updateArea);
-
     function updateArea(e) {
       const data = draw.getAll();
       setBoundData(data);
@@ -484,15 +493,15 @@ export default function Page() {
   });
   function sendData() {
     console.log("here we are");
-    navigate("/analyse");
+    navigate("/solution");
   }
   console.log(boundData);
 
   const [school, setSchool] = useState(false);
   const [hospital, setHospital] = useState(false);
 
-  let firstPageAc = 1;
-  let secondPageAc = 0;
+  let firstPageAc = 0;
+  let secondPageAc = 1;
 
   return (
     <>
